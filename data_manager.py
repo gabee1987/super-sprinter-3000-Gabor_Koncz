@@ -14,70 +14,72 @@ def ID_generator():
         Loads the output of show_stories,
         checks the line number of it and adds 1 to it.
     """
-    table = show_stories()
+    stories = open_file()
     return str(len(table) + 1)
 
 
-def show_stories(filename="database.csv"):
+def open_file(stories, filename="database.csv"):
     """
-        Loads the data from a file.
-        Returns a list with the specific entries.
+        Opens the specified file to show its content.
+        Reads it content as rows.
     """
-    stories = list()
     try:
         with open(filename, 'r') as workfile:
-            for row in workfile:
-                row = workfile.readlines('\n')
-                stories.append(list(ID_generator()) + row.split(';'))
+            row = workfile.readlines('\n')
+            file_items = [item.split(';') for item in row]
+            return file_items
     except FileNotFoundError:
-        stories = None
-    return stories
+        file_items = None
+
+
+def write_to_file(file_items, filename="databse.csv"):
+    """
+        Saves data to the specified file.
+        Write the entry as rows.
+    """
+    with open(filename, 'w') as workfile:
+        for item in file_items:
+            row = ';'.join(item)
+            workfile.write(row + '\n')
 
 
 def add_story(new_story, filename="database.csv"):
     """
         Adds the entries what the user gives.
-        Append it to the list as a new line.
     """
-    with open(filename, 'a') as workfile:
-        workfile.write(';'.join(new_story) + '\n')
+    stories = open_file()
+    new_entries = []
+    new_entries.insert(0, ID_generator())
+    form_elements = [
+                    "story_title",
+                    "user_story",
+                    "acceptance_criteria",
+                    "business_value",
+                    "estimation",
+                    "status"
+                    ]
+    for element in form_elements:
+        new_entries.append(request.form[element])
 
 
 def delete_story(story_ID, filename="database.csv"):
     """
         Removes an entry from the specified file.
-        Removes a line from the list.
     """
-    stories = show_stories()
-    try:
-        with open(filename, 'w') as workfile:
-            story_ID = request.form['delete']
-            for row in stories:
-                if row[0] == story_ID:
-                    stories.remove(row)
-            return stories
-    except FileNotFoundError:
-        stories = None
-        return stories
+    stories = open_file()
+    ID = request.form["delete"]
+    for story in stories:
+        if story[0] == ID:
+            stories.remove(story)
+    write_to_file(stories)
 
 
 def update_story(story_ID, new_story, filename="database.csv"):
     """
         Update the entry specified by the story_ID.
-        Replace the specified line in the list.
     """
     stories = show_stories()
     story_ID = request.form['edit']
-    try:
-        with open(filename, 'w') as workfile:
-            for row in stories:
-                if row[0] == story_ID:
-                    stories.append(';'.join(new_story) + '\n')
-                else:
-                    stories.append(row)
-                return stories
-    except FileNotFoundError:
-        pass
 
 
 
