@@ -61,15 +61,25 @@ def delete_story(story_ID, filename="database.csv"):
         return stories
 
 
-
-
-
-def update_story(story_ID, filename="database.csv"):
+def update_story(story_ID, new_story, filename="database.csv"):
     """
         Update the entry specified by the story_ID.
         Replace the specified line in the list.
     """
+    stories = show_stories()
+    story_ID = request.form['edit']
+    try:
+        with open(filename, 'w') as workfile:
+            for row in stories:
+                if row[0] == story_ID:
+                    stories.append(';'.join(new_story) + '\n')
+                else:
+                    stories.append(row)
+                return stories
+    except FileNotFoundError:
+        pass
 
-    
+
+
 
 
