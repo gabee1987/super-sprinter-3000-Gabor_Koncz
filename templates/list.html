@@ -7,3 +7,24 @@
     <body>
         <h1><strong>User Story Manager</strong></h1>
         <button><a href="/story">Add new story</a></button>
+        <p></p>
+        <table>
+            <tr>
+                {% for item in table_header %}
+                    <td>{{ item}}</td>
+                {% endfor %}
+            </tr>
+            {% for line in stories %}
+                <tr>
+                    {% for data in row %}
+                        <td class="table_data">{{ data }}</td>
+                    {% endfor %}
+                    <td>
+                        <a href="story/{{ story[0] }}"><img src="/static/img/pen.png" width="32" height="32"></a>
+                        <a href="/deletestory/{{ story[0] }}"><img src="/static/img/bin.png" width="32" height="32"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

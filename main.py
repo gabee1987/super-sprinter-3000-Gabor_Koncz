@@ -28,6 +28,7 @@ def show_story_list():
                     ]
     return render_template("list.html", stories=stories, table_header=table_header)
 
+
 @app.route("/story")
 def create_story(story_ID=None):
     return render_template("form.html", story_ID=story_ID)
