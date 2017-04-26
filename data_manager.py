@@ -18,7 +18,7 @@ def ID_generator():
     return str(len(table) + 1)
 
 
-def open_file(stories, filename="database.csv"):
+def open_file(filename="database.csv"):
     """
         Opens the specified file to show its content.
         Reads it content as rows.
@@ -32,7 +32,7 @@ def open_file(stories, filename="database.csv"):
         file_items = None
 
 
-def write_to_file(file_items, filename="databse.csv"):
+def write_to_file(stories, filename="databse.csv"):
     """
         Saves data to the specified file.
         Write the entry as rows.
@@ -43,7 +43,7 @@ def write_to_file(file_items, filename="databse.csv"):
             workfile.write(row + '\n')
 
 
-def add_story(new_story, filename="database.csv"):
+def add_story(filename="database.csv"):
     """
         Adds the entries what the user gives.
     """
@@ -60,9 +60,11 @@ def add_story(new_story, filename="database.csv"):
                     ]
     for element in form_elements:
         new_entries.append(request.form[element])
+    stories.append(new_entries)
+    write_to_file(stories)
 
 
-def delete_story(story_ID, filename="database.csv"):
+def delete_story(filename="database.csv"):
     """
         Removes an entry from the specified file.
     """
@@ -74,7 +76,7 @@ def delete_story(story_ID, filename="database.csv"):
     write_to_file(stories)
 
 
-def update_story(story_ID, new_story, filename="database.csv"):
+def update_story(story_ID, filename="database.csv"):
     """
         Update the entry specified by the story_ID.
     """

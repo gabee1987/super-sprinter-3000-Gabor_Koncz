@@ -6,16 +6,31 @@
 
 
 from flask import Flask, request, render_template
+from data_manager import *
 
 
 app = Flask(__name__)
 
 
-@app.route('/list')
-def story_list():
-    
+@app.route('/', methods=["GET", "POST"])
+@app.route('/list', methods=["GET", "POST"])
+def show_story_list():
+    stories = open_file()
+    table_header = [
+                    "ID",
+                    "Story Title",
+                    "User Story",
+                    "Acceptance Criteria",
+                    "Business Value",
+                    "Estimation",
+                    "Status",
+                    "Action"
+                    ]
+    return render_template("list.html", stories=stories, table_header=table_header)
 
-
+@app.route("/story")
+def create_story(story_ID=None):
+    return render_template("form.html", story_ID=story_ID)
 
 
 
