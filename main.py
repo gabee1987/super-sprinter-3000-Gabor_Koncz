@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route('/', methods=["GET", "POST"])
 @app.route('/list', methods=["GET", "POST"])
 def show_story_list():
-    stories = open_file()
+    stories = open_file("database.csv")
     table_header = [
                     "ID",
                     "Story Title",
@@ -29,7 +29,8 @@ def show_story_list():
     return render_template("list.html", stories=stories, table_header=table_header)
 
 
-@app.route("/story")
+@app.route('/story')
+@app.route('/story/<story_ID>')
 def create_story(story_ID=None):
     return render_template("form.html", story_ID=story_ID)
 
