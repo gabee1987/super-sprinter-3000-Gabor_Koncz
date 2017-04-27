@@ -27,11 +27,11 @@ def open_file(filename="database.csv"):
     """
     try:
         with open(filename, 'r') as workfile:
-            row = workfile.readlines('\n')
-            file_items = [item.split(';') for item in row]
-            return file_items
+            row = workfile.readlines()
+            stories = [item.split(';') for item in row]
+            return stories
     except FileNotFoundError:
-        file_items = None
+        stories = None
 
 
 def write_to_file(stories, filename="databse.csv"):
