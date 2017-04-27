@@ -39,5 +39,5 @@ def create_story(story_ID=None):
 
 
 
-if__name__ == "__main__":
+if __name__ == "__main__":
     app.run(debug=True)

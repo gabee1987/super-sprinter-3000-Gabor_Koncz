@@ -15,7 +15,7 @@ def ID_generator():
         checks the line number of it and adds 1 to it.
     """
     stories = open_file()
-    return str(len(table) + 1)
+    return len(table) + 1
 
 
 def open_file(filename="database.csv"):
@@ -38,7 +38,7 @@ def write_to_file(stories, filename="databse.csv"):
         Write the entry as rows.
     """
     with open(filename, 'w') as workfile:
-        for item in file_items:
+        for item in stories:
             row = ';'.join(item)
             workfile.write(row + '\n')
 
