@@ -58,7 +58,7 @@ def add_story():
 
 
 @app.route("/story/<story_ID>", methods=["GET", "POST"])
-def edit_story(story_ID=None):
+def edit_story(story_ID=None, story_data=[]):
     stories = open_file()
     story_ID = request.form['edit']
     ID = str(story_ID)
@@ -69,12 +69,12 @@ def edit_story(story_ID=None):
     return render_template("form.html", story_ID=story_ID, story_data=story_to_edit)
 
 
-@app.route("/edit_story", methods=["GET", "POST"])
-def update_story(story_ID, filename="database.csv"):
+@app.route("/story", methods=["GET", "POST"])
+def update_story(story_ID=None):
     """
         Update the entry specified by the story_ID.
     """
-    stories = open_stories()
+    stories = open_file()
     story_ID = request.form['edit']
     ID = str(story_ID)
     editing_story = []
@@ -87,7 +87,7 @@ def update_story(story_ID, filename="database.csv"):
                     "estimation",
                     "status"
                     ]
-    for element in form_elements:
+    for name in form_elements:
         editing_story.append(request.form[name])
     stories.append(new_entries)
     for element in stories:
@@ -97,12 +97,14 @@ def update_story(story_ID, filename="database.csv"):
     return redirect(url_for('show_story_list'))
 
 
-def delete_story(story_ID, filename="database.csv"):
+@app.route("/delete_story", methods=['POST'])
+def delete_story():
     """
         Removes an entry from the specified file.
     """
     stories = open_file()
-    ID = request.form["delete"]
+    ID_form = request.form["delete"]
+    ID = str(ID_form)
     for story in stories:
         if story[0] == ID:
             stories.remove(story)

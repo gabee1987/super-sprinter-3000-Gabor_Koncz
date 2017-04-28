@@ -21,8 +21,12 @@
                     {% endfor %}
                     <td>
                         <form action="story/{{ row[0] }}" method="POST">
-                        <input  name="edit_option" type="image" src="/static/img/pen.png" alt="Submit" width="30" value="{{ row[0] }}">
-                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="30" value="{{ row[0] }}">
+                        <input  name="edit" type="image" src="/static/img/pen.png" alt="Submit" width="20" value="{{ row[0] }}">
+                        </form>
+                    </td>
+                    <td align="middle">
+                        <form action="/delete_story" method="POST">
+                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="20" value="{{ row[0] }}">
                         </form>
                     </td>
                     {% endfor %}
