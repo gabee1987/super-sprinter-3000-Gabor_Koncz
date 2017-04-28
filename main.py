@@ -5,7 +5,7 @@
 """
 
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from data_manager import *
 
 
@@ -29,13 +29,22 @@ def show_story_list():
     return render_template("list.html", stories=stories, table_header=table_header)
 
 
-@app.route('/story', methods=['GET', 'POST'])
-@app.route('/story/<story_ID>')
+@app.route("/story", methods=["GET", "POST"])
 def create_story(story_ID=None):
-    if story_ID:
-        editing_story = open_file()
-        return render_template("form.html", story_ID=story_ID, editing_story=editing_story)
-    return render_template("form.html", story_ID="")
+    return render_template("form.html", story_ID=story_ID)
+
+
+@app.route("/story/<story_ID>", methods=["GET", "POST"])
+def edit_story(story_ID=None):
+    stories = open_file()
+    story_ID = request.form['edit']
+    ID = str(story_ID)
+    story_to_edit = []
+    for story in stories:
+        if story[0] == ID:
+            story_to_edit.append(story)
+    return render_template("form.html", story_ID=story_ID, story_data=story_to_edit)
+
 
 
 
