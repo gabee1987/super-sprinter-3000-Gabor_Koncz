@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 
 <html>
-    {% if not story_id %}
+    {% if not story_ID %}
     <head>
         <title>Sprinter 3000 - Add new Story</title>
             <h1><strong>User story manager - Add new Story</strong></h1>
     </head>
         <body>
             <h3>User Story Manager - Add New Story</h3>
-            <form action="/list" method="POST">
+            <form action="/story" method="POST">
                 <p>Story Title:</br>
-                <input type="text" name="story-title" required></p>
+                <input type="text" name="story_title" required></p>
                 
                 <p>User Story:</br>
-                <textarea name="user-story" rows="5" cols="20" required></textarea></p>
+                <textarea name="user_story" rows="5" cols="20" required></textarea></p>
 
                 <p>Acceptance criteria:</br>
-                <textarea name="accept-crit" rows="5" cols="20" required></textarea></p>
+                <textarea name="acceptance_criteria" rows="5" cols="20" required></textarea></p>
 
                 <p>Business value:</br>
-                <input type="number" name="bussines-value" min="100" max="1500" step="100">
+                <input type="number" name="business_value" min="100" max="1500" step="100">
 
                 <p>Estimation (h):</br>
                 <input type="number" name="estimation" min="0.5" max="40" step="0.5">
@@ -43,8 +43,8 @@
     </head>
         <body>
             <h3>User Story Manager - Add New Story</h3>
-            <form action="/list" method="POST">
-            {% for data in story_to_edit %}
+            <form action="/edit_story" method="POST">
+            {% for data in story_data %}
                 <p>Story Title:</br>
                 <input type="text" name="story_title" value="{{ data[1] }}" required></p>
                 

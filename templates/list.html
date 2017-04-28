@@ -17,14 +17,16 @@
             {% for row in stories %}
                 <tr>
                     {% for data in row %}
-                        <td class="stories">{{ data }}</td>
+                        <td align="middle" class="stories">{{ data }}</td>
                     {% endfor %}
                     <td>
-                        <a href="story/{{ stories[0] }}"><img src="/static/img/pen.png" width="32" height="32"></a>
-                        <a href="/deletestory/{{ stories[0] }}"><img src="/static/img/bin.png" width="32" height="32"></a>
+                        <form action="story/{{ row[0] }}" method="POST">
+                        <input  name="edit_option" type="image" src="/static/img/pen.png" alt="Submit" width="30" value="{{ row[0] }}">
+                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="30" value="{{ row[0] }}">
+                        </form>
                     </td>
+                    {% endfor %}
                 </tr>
-            {% endfor %}
-        </table>
+            </table>
     </body>
 </html>
