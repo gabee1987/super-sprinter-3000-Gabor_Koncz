@@ -6,31 +6,32 @@
             <h1><strong>User story manager - Add new Story</strong></h1>
     </head>
         <body>
+            {{ for story in stories }}
             <form action="/list" method="POST">
                 <p>Story Title:</br>
-                <input id="story_title" type="text" name="story-title" required></p>
+                <input type="text" name="story-title" value={{ edited_story[1] if edited_story else "" }} required></p>
                 
                 <p>User Story:</br>
-                <textarea id="user_story" name="user-story" rows="5" cols="20" required></textarea></p>
+                <textarea name="user-story" rows="5" cols="20" value={{ edited_story[2] if edited_story else "" }} required></textarea></p>
 
                 <p>Acceptance criteria:</br>
-                <textarea id="accept_crit" name="accept-crit" rows="5" cols="20" required></textarea></p>
+                <textarea name="accept-crit" rows="5" cols="20"value={{ edited_story[3] if edited_story else "" }} required></textarea></p>
 
                 <p>Business value:</br>
-                <input id="bussines_value" type="number" name="bussines-value" min="100" max="1500" step="100">
+                <input type="number" name="bussines-value" min="100" max="1500" step="100" value={{ edited_story[4] if edited_story else "" }}>
 
                 <p>Estimation (h):</br>
-                <input id="estimation" type="number" name="estimation" min="0.5" max="40" step="0.5">
+                <input type="number" name="estimation" min="0.5" max="40" step="0.5" value={{ edited_story[5] if edited_story else "" }}>
 
                 <p>Status:</br>
-                <select id="status" name="status">
-                    <option value="Planning">Planning</option>
-                    <option value="TODO">TODO</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Review">Review</option>
-                    <option value="Done">Done</option>
+                <select name="status">
+                    <option value="Planning" {{ 'selected' if edited_story[6] == "Planning" else "" }}>Planning</option>
+                    <option value="TODO" {{ 'selected' if edited_story[6] == "TODO" else "" }}>TODO</option>
+                    <option value="In Progress" {{ 'selected' if edited_story[6] == "In Progress" else "" }}>In Progress</option>
+                    <option value="Review" {{ 'selected' if edited_story[6] == "Review" else "" }}>Review</option>
+                    <option value="Done" {{ 'selected' if edited_story[6] == "Done" else "" }}>Done</option>
                 </select>
-                <p><input id="create_button" type="submit" name="create" value="Create"></p>
+                <p><input type="submit" name="create" value="{{ 'Create' if not story_id else 'Update' }}"></p>
             </form>
         </body>
         <p><button><a href="/">Back</a></button></p>

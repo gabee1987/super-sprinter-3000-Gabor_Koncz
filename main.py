@@ -32,7 +32,10 @@ def show_story_list():
 @app.route('/story', methods=['GET', 'POST'])
 @app.route('/story/<story_ID>')
 def create_story(story_ID=None):
-    return render_template("form.html", story_ID=story_ID)
+    if story_ID:
+        editing_story = open_file(story_ID)
+        return render_template("form.html", story_ID=story_ID)
+    return render_template("form.html", story_ID="")
 
 
 

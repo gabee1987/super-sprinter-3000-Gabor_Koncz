@@ -20,7 +20,7 @@ def ID_generator(stories):
     return str(max(ID_numbers) + 1)
 
 
-def open_file(filename="database.csv"):
+def open_file(story_ID, filename="database.csv"):
     """
         Opens the specified file to show its content.
         Reads it content as rows.
