@@ -33,10 +33,10 @@
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                 </select>
-                <p><input type="submit" name="create" value="Create"></p>
+                <p><input type="submit" name="create" value="Create" class="button">
+                <a href="/" class="button">Back</a></p>
             </form>
         </body>
-        <p><button><a href="/">Back</a></button></p>
     {% else %}
     <head>
         <title>Sprinter 3000 - Edit Story</title>
@@ -69,7 +69,7 @@
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                 </select>
-                <p><button id="update_button" name="edit" type="submit" value="{{ data[0] }}">Update</button></p>
+                <p><button id="update_button" name="edit" type="submit" value="{{ data[0] }}" class="button">Update</button></p>
             </form>
             {% endfor %}
         </body>

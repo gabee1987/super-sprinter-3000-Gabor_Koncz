@@ -40,10 +40,17 @@ h1 {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: #6495ED; 
+    color: black; 
+    border: 2px solid #6495ED;
 }
 
 .button:hover {
-    background-color: white;
+    background-color: #6495ED;
     color: white;
 }
 
@@ -53,7 +60,7 @@ textarea {
     margin: 8px 0;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 1px solid #555;
+    border: 1px solid #6495ED;
     outline: none;
 }
 
@@ -67,18 +74,28 @@ input[type=text] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 1px solid #555;
+    border: 1px solid #6495ED;
     outline: none;
 }
+
+input[type=number] {
+    width: 200px;
+    padding: 10px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #6495ED;
+    outline: none;
+}
+
 
 input[type=text]:focus {
     background-color: lightblue;
 }
 
 select {
-    width: 300px;
-    padding: 16px 20px;
-    border: none;
+    width: 200px;
+    padding: 10px 10px;
+    border: 1px solid #6495ED;
     border-radius: 4px;
     background-color: #f1f1f1;
 }

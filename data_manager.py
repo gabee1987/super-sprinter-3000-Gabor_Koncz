@@ -27,7 +27,7 @@ def open_file(filename="database.csv"):
     try:
         with open(filename, 'r') as workfile:
             row = workfile.readlines()
-            stories = [item.split(';') for item in row]
+            stories = [item.replace("\n", "").split(';') for item in row]
             return stories
     except FileNotFoundError:
         stories = None
@@ -40,9 +40,9 @@ def write_to_file(stories, filename="database.csv"):
     """
     with open(filename, 'w') as workfile:
         for item in stories:
-            story = [element.strip("\n") for element in item]
+            story = [element.strip("\r\n") for element in item]
             row = ';'.join(story)
-            workfile.write(row + '\n')
+            workfile.write(row + "\n")
 
 
 
