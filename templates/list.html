@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 
 <html>
+    <link rel="stylesheet" href="static/style.css">
     <head>
         <title>Super Sprinter 3000</title>
     </head>
     <body>
         <h1><strong>User Story Manager</strong></h1>
-        <button><a href="/story">Add new story</a></button>
+        <form action="/story" method="GET">
+        <input type="submit" value="Create a story" class="button" href="/story">
+        </form>
         <p></p>
-        <table border=1>
+        <table border=2>
             <tr>
                 {% for item in table_header %}
-                    <td><strong>{{ item }}</strong></td>
+                    <td align="middle"><strong>{{ item }}</strong></td>
                 {% endfor %}
             </tr>
             {% for row in stories %}

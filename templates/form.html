@@ -43,7 +43,7 @@
     </head>
         <body>
             <h3>User Story Manager - Add New Story</h3>
-            <form action="/edit_story" method="POST">
+            <form action="/story" method="POST">
             {% for data in story_data %}
                 <p>Story Title:</br>
                 <input type="text" name="story_title" value="{{ data[1] }}" required></p>
