@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+    <link rel="stylesheet" href="static/style.css">
     {% if not story_ID %}
     <head>
         <title>Sprinter 3000 - Add new Story</title>
@@ -68,7 +69,7 @@
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                 </select>
-                <p><input type="submit" name="edit" value="Update"></p>
+                <p><button id="update_button" name="edit" type="submit" value="{{ data[0] }}">Update</button></p>
             </form>
             {% endfor %}
         </body>

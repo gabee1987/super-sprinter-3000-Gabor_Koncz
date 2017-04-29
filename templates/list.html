@@ -6,30 +6,28 @@
         <title>Super Sprinter 3000</title>
     </head>
     <body>
-        <h1><strong>User Story Manager</strong></h1>
+        <h1>User Story Manager</h1>
         <form action="/story" method="GET">
         <input type="submit" value="Create a story" class="button" href="/story">
         </form>
         <p></p>
-        <table border=2>
-            <tr>
-                {% for item in table_header %}
-                    <td align="middle"><strong>{{ item }}</strong></td>
-                {% endfor %}
-            </tr>
+        <table id="story_table">
+            {% for item in table_header %}
+                <th align="middle"><strong>{{ item }}</strong></th>
+            {% endfor %}
             {% for row in stories %}
                 <tr>
                     {% for data in row %}
                         <td align="middle" class="stories">{{ data }}</td>
                     {% endfor %}
-                    <td>
+                    <td align="middle">
                         <form action="story/{{ row[0] }}" method="POST">
-                        <input  name="edit" type="image" src="/static/img/pen.png" alt="Submit" width="20" value="{{ row[0] }}">
+                        <input  name="edit_button" type="image" src="/static/img/pen.png" alt="Submit" width="30" value="{{ row[0] }}">
                         </form>
                     </td>
                     <td align="middle">
                         <form action="/delete_story" method="POST">
-                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="20" value="{{ row[0] }}">
+                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="30" value="{{ row[0] }}">
                         </form>
                     </td>
                     {% endfor %}

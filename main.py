@@ -58,10 +58,10 @@ def add_story():
     return redirect(url_for("show_story_list"))
 
 
-@app.route("/story/<story_ID>", methods=["GET", "POST"])
+@app.route("/story/<story_ID>", methods=["POST"])
 def edit_story(story_ID=None, story_data=[]):
     stories = open_file()
-    story_ID = request.form['edit']
+    story_ID = request.form['edit_button']
     ID = str(story_ID)
     story_to_edit = []
     for story in stories:
@@ -70,30 +70,32 @@ def edit_story(story_ID=None, story_data=[]):
     return render_template("form.html", story_ID=story_ID, story_data=story_to_edit)
 
 
-@app.route("/story", methods=["GET", "POST"])
+@app.route("/story", methods=["POST"])
 def update_story():
     """
         Update the entry specified by the story_ID.
     """
     stories = open_file()
-    story_ID = request.form['edit']
+    story_ID = request.form["edit"]
     ID = str(story_ID)
     editing_story = []
     editing_story.append(ID)
     form_elements = [
                     "story_title",
                     "user_story",
-                    "acceptance_criteria",
+                    "accept_crit",
                     "business_value",
                     "estimation",
                     "status"
                     ]
     for name in form_elements:
         editing_story.append(request.form[name])
-    stories.append(new_entries)
+    clearing_stories = [element.replace('\n', ' ') for element in stories]
+    cleared_stories = [element.replace(';', ',') for element in clearing_stories]
     for element in stories:
-        stories.remove(element)
-        stories.insert(0, editing_story)
+        if element[0] == ID:
+            stories.remove(element)
+            stories.insert(0, cleared_stories)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
 
