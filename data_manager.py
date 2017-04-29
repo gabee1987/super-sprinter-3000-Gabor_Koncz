@@ -10,9 +10,8 @@ import csv
 
 def ID_generator(stories):
     """
-        Generates an ID for the entries.
-        Loads the output of show_stories,
-        checks the line number of it and adds 1 to it.
+        Generates an ID for the entries,
+        based on the line numbers.
     """
     ID_numbers = [int(id[0]) for id in stories]
     if not ID_numbers:
@@ -23,7 +22,7 @@ def ID_generator(stories):
 def open_file(filename="database.csv"):
     """
         Opens the specified file to show its content.
-        Reads it content as rows.
+        Reads its content as rows.
     """
     try:
         with open(filename, 'r') as workfile:

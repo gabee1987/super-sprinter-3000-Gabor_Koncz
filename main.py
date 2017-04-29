@@ -37,7 +37,8 @@ def create_story(story_ID=None):
 @app.route('/story', methods=["POST"])
 def add_story():
     """
-        Adds the entries what the user gives.
+        Adds the entries to the database
+        what the user gives through the form.
     """
     stories = open_file()
     new_entries = []
@@ -54,7 +55,7 @@ def add_story():
         new_entries.append(request.form[name])
     stories.append(new_entries)
     write_to_file(stories)
-    return redirect(url_for('show_story_list'))
+    return redirect(url_for("show_story_list"))
 
 
 @app.route("/story/<story_ID>", methods=["GET", "POST"])
@@ -70,7 +71,7 @@ def edit_story(story_ID=None, story_data=[]):
 
 
 @app.route("/story", methods=["GET", "POST"])
-def update_story(story_ID=None):
+def update_story():
     """
         Update the entry specified by the story_ID.
     """
@@ -100,11 +101,12 @@ def update_story(story_ID=None):
 @app.route("/delete_story", methods=['POST'])
 def delete_story():
     """
-        Removes an entry from the specified file.
+        Removes an entry from the specified file,
+        based on the ID.
     """
     stories = open_file()
-    ID_form = request.form["delete"]
-    ID = str(ID_form)
+    story_ID = request.form["delete"]
+    ID = str(story_ID)
     for story in stories:
         if story[0] == ID:
             stories.remove(story)
