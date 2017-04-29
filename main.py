@@ -24,7 +24,8 @@ def show_story_list():
                     "Business Value",
                     "Estimation",
                     "Status",
-                    "Action"
+                    "Edit",
+                    "Delete"
                     ]
     return render_template("list.html", stories=stories, table_header=table_header)
 
