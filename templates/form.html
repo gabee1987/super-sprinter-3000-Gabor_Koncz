@@ -44,22 +44,22 @@
     </head>
         <body>
             <h3>User Story Manager - Add New Story</h3>
-            <form action="/story" method="POST">
+            <form action="/edit_story" method="POST">
             {% for data in story_data %}
                 <p>Story Title:</br>
-                <input type="text" name="story_title" value="{{ data[1] }}" required></p>
+                <input type="text" name="edited_story_title" value="{{ data[1] }}" required></p>
                 
                 <p>User Story:</br>
-                <textarea name="user_story" rows="5" cols="20" value="{{ data[2] }}" required></textarea></p>
+                <textarea name="edited_user_story" rows="5" cols="20" required>{{ data[2] }}</textarea></p>
 
                 <p>Acceptance criteria:</br>
-                <textarea name="accept_crit" rows="5" cols="20" value="{{ data[3] }}" required></textarea></p>
+                <textarea name="edited_accept_crit" rows="5" cols="20" required>{{ data[3] }}</textarea></p>
 
                 <p>Business value:</br>
-                <input type="number" name="bussines_value" min="100" max="1500" step="100" value="{{ data[4] }}">
+                <input type="number" name="edited_bussines_value" min="100" max="1500" step="100" value="{{ data[4] }}">
 
                 <p>Estimation (h):</br>
-                <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="{{ data[5] }}">
+                <input type="number" name="edited_estimation" min="0.5" max="40" step="0.5" value="{{ data[5] }}">
 
                 <p>Status:</br>
                 <select name="status">

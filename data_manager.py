@@ -36,13 +36,14 @@ def open_file(filename="database.csv"):
 def write_to_file(stories, filename="database.csv"):
     """
         Saves data to the specified file.
-        Write the entry as rows.
+        Write the entries as rows.
     """
     with open(filename, 'w') as workfile:
         for item in stories:
             story = [element.strip("\n") for element in item]
             row = ';'.join(story)
             workfile.write(row + '\n')
+
 
 
 

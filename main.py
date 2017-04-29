@@ -61,8 +61,8 @@ def add_story():
 @app.route("/story/<story_ID>", methods=["POST"])
 def edit_story(story_ID=None, story_data=[]):
     stories = open_file()
-    story_ID = request.form['edit_button']
-    ID = str(story_ID)
+    ID_of_story = request.form["edit_button"]
+    ID = str(ID_of_story)
     story_to_edit = []
     for story in stories:
         if story[0] == ID:
@@ -70,27 +70,27 @@ def edit_story(story_ID=None, story_data=[]):
     return render_template("form.html", story_ID=story_ID, story_data=story_to_edit)
 
 
-@app.route("/story", methods=["POST"])
+@app.route("/edit_story", methods=["GET", "POST"])
 def update_story():
     """
         Update the entry specified by the story_ID.
     """
     stories = open_file()
-    story_ID = request.form["edit"]
-    ID = str(story_ID)
+    ID_of_story = request.form["edit"]
+    ID = str(ID_of_story)
     editing_story = []
     editing_story.append(ID)
     form_elements = [
-                    "story_title",
-                    "user_story",
-                    "accept_crit",
-                    "business_value",
-                    "estimation",
-                    "status"
+                    "edited_story_title",
+                    "edited_user_story",
+                    "edited_accept_crit",
+                    "edited_business_value",
+                    "edited_estimation",
+                    "edited_status"
                     ]
     for name in form_elements:
         editing_story.append(request.form[name])
-    clearing_stories = [element.replace('\n', ' ') for element in stories]
+    clearing_stories = [element.replace('\n', ' ') for element in editing_story]
     cleared_stories = [element.replace(';', ',') for element in clearing_stories]
     for element in stories:
         if element[0] == ID:
