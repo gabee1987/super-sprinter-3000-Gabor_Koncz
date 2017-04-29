@@ -44,22 +44,21 @@
     </head>
         <body>
             <h3>User Story Manager - Add New Story</h3>
-            <form action="/edit_story" method="POST">
-            {% for data in story_data %}
+            <form action="/edit" method="POST">
                 <p>Story Title:</br>
-                <input type="text" name="edited_story_title" value="{{ data[1] }}" required></p>
+                <input type="text" name="edited_story_title" value="{{ story_to_edit[1] }}" required></p>
                 
                 <p>User Story:</br>
-                <textarea name="edited_user_story" rows="5" cols="20" required>{{ data[2] }}</textarea></p>
+                <textarea name="edited_user_story" rows="5" cols="20" required>{{ story_to_edit[2] }}</textarea></p>
 
                 <p>Acceptance criteria:</br>
-                <textarea name="edited_accept_crit" rows="5" cols="20" required>{{ data[3] }}</textarea></p>
+                <textarea name="edited_accept_crit" rows="5" cols="20" required>{{ story_to_edit[3] }}</textarea></p>
 
                 <p>Business value:</br>
-                <input type="number" name="edited_bussines_value" min="100" max="1500" step="100" value="{{ data[4] }}">
+                <input type="number" name="edited_bussines_value" min="100" max="1500" step="100" value="{{ story_to_edit[4] }}">
 
                 <p>Estimation (h):</br>
-                <input type="number" name="edited_estimation" min="0.5" max="40" step="0.5" value="{{ data[5] }}">
+                <input type="number" name="edited_estimation" min="0.5" max="40" step="0.5" value="{{ story_to_edit[5] }}">
 
                 <p>Status:</br>
                 <select name="status">
@@ -69,9 +68,8 @@
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                 </select>
-                <p><button id="update_button" name="edit" type="submit" value="{{ data[0] }}" class="button">Update</button></p>
+                <p><button id="update_button" name="update_button" type="submit" value="{{ story_to_edit[0] }}" class="button">Update</button></p>
             </form>
-            {% endfor %}
         </body>
         <p><button><a href="/">Back</a></button></p>
     {% endif %}

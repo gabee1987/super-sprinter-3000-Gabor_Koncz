@@ -59,27 +59,28 @@ def add_story():
 
 
 @app.route("/story/<story_ID>", methods=["POST"])
-def edit_story(story_ID=None, story_data=[]):
+def edit_story(story_ID=None):
     stories = open_file()
-    ID_of_story = request.form["edit_button"]
-    ID = str(ID_of_story)
+    story_ID = request.form["edit_button"]
     story_to_edit = []
     for story in stories:
-        if story[0] == ID:
-            story_to_edit.append(story)
-    return render_template("form.html", story_ID=story_ID, story_data=story_to_edit)
+        if story[0] == story_ID:
+            for item in story:
+                story_to_edit.append(item)
+    return render_template("form.html", story_ID=story_ID, story_to_edit=story_to_edit)
 
 
-@app.route("/edit_story", methods=["POST"])
+@app.route("/edit", methods=["POST"])
 def update_story():
     """
         Update the entry specified by the story_ID.
     """
     stories = open_file()
-    ID_of_story = request.form["update_button"]
-    ID = str(ID_of_story)
-    editing_story = []
-    editing_story.append(ID)
+    story_ID = request.form["update_button"]
+    for element in stories:
+        if element[0] == story_ID:
+            stories.remove(element)
+    editing_story = [story_ID]
     form_elements = [
                     "edited_story_title",
                     "edited_user_story",
@@ -90,10 +91,7 @@ def update_story():
                     ]
     for name in form_elements:
         editing_story.append(request.form[name])
-    for element in stories:
-        if element[0] == ID:
-            stories.remove(element)
-            stories.insert(0, editing_story)
+    stories.append(editing_story)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
 
@@ -106,9 +104,9 @@ def delete_story():
     """
     stories = open_file()
     story_ID = request.form["delete"]
-    ID = str(story_ID)
+    story_ID = str(story_ID)
     for story in stories:
-        if story[0] == ID:
+        if story[0] == story_ID:
             stories.remove(story)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
