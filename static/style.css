@@ -169,7 +169,7 @@ td.text-right {
 
 #create_story {
     position:absolute;
-transition: .5s ease;
+    transition: .5s ease;
     left: 250px;
     top: 40px;
 
