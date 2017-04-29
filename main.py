@@ -59,7 +59,7 @@ def add_story():
 
 
 @app.route("/story/<story_ID>", methods=["POST"])
-def edit_story(story_ID=None):
+def show_edit_story(story_ID=None):
     stories = open_file()
     story_ID = request.form["edit_button"]
     story_to_edit = []
@@ -104,16 +104,12 @@ def delete_story():
     """
     stories = open_file()
     story_ID = request.form["delete"]
-    story_ID = str(story_ID)
     for story in stories:
         if story[0] == story_ID:
             stories.remove(story)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
 
-
-#clearing_stories = [element.replace("\n", " ") for element in editing_story]
-#cleared_stories = [element.replace(';', ',') for element in clearing_stories]
 
 
 

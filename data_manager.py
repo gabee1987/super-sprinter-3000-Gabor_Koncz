@@ -40,7 +40,7 @@ def write_to_file(stories, filename="database.csv"):
     """
     with open(filename, 'w') as workfile:
         for item in stories:
-            story = [element.replace("\r\n", "") for element in item]
+            story = [element.replace("\n", "") for element in item]
             row = ';'.join(story)
             workfile.write(row + "\n")
 

@@ -55,13 +55,13 @@
                 <textarea name="edited_accept_crit" rows="5" cols="20" required>{{ story_to_edit[3] }}</textarea></p>
 
                 <p>Business value:</br>
-                <input type="number" name="edited_bussines_value" min="100" max="1500" step="100" value="{{ story_to_edit[4] }}">
+                <input type="number" name="edited_business_value" min="100" max="1500" step="100" value="{{ story_to_edit[4] }}">
 
                 <p>Estimation (h):</br>
                 <input type="number" name="edited_estimation" min="0.5" max="40" step="0.5" value="{{ story_to_edit[5] }}">
 
                 <p>Status:</br>
-                <select name="status">
+                <select name="edited_status">
                     <option value="Planning">Planning</option>
                     <option value="TODO">TODO</option>
                     <option value="In Progress">In Progress</option>
