@@ -15,6 +15,10 @@ app = Flask(__name__)
 @app.route('/', methods=["GET", "POST"])
 @app.route('/list', methods=["GET", "POST"])
 def show_story_list():
+    """
+        Shows the list page, where the stories are 
+        displayed as a table.
+    """
     stories = open_file()
     table_header = [
                     "ID",
@@ -32,6 +36,9 @@ def show_story_list():
 
 @app.route("/story", methods=["GET"])
 def create_story(story_ID=None):
+    """
+        Shows the form page
+    """
     return render_template("form.html", story_ID=story_ID)
 
 
@@ -61,6 +68,10 @@ def add_story():
 
 @app.route("/story/<story_ID>", methods=["POST"])
 def show_edit_story(story_ID=None):
+    """
+        Shows the form page where the forms are already filled in,
+        based on the story_ID
+    """
     stories = open_file()
     story_ID = request.form["edit_button"]
     story_to_edit = []
