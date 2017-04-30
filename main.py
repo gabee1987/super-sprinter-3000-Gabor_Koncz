@@ -2,6 +2,7 @@
     Super Sprinter 3000
     A basic web server to store data about
     a teams Agile developement process
+    by Gábor Koncz
 """
 
 
@@ -16,7 +17,7 @@ app = Flask(__name__)
 @app.route('/list', methods=["GET", "POST"])
 def show_story_list():
     """
-        Shows the list page, where the stories are 
+        Shows the list page, where the stories are
         displayed as a table.
     """
     stories = open_file()
@@ -37,7 +38,8 @@ def show_story_list():
 @app.route("/story", methods=["GET"])
 def create_story(story_ID=None):
     """
-        Shows the form page
+        Shows the form page, 
+        where the user can add stories to the database.
     """
     return render_template("form.html", story_ID=story_ID)
 
@@ -59,8 +61,8 @@ def add_story():
                     "estimation",
                     "status"
                     ]
-    for name in form_elements:
-        new_entries.append(request.form[name])
+    for element in form_elements:
+        new_entries.append(request.form[element])
     stories.append(new_entries)
     write_to_file(stories)
     return redirect(url_for("show_story_list"))
@@ -70,7 +72,7 @@ def add_story():
 def show_edit_story(story_ID=None):
     """
         Shows the form page where the forms are already filled in,
-        based on the story_ID
+        based on the story_ID.
     """
     stories = open_file()
     story_ID = request.form["edit_button"]
@@ -101,8 +103,8 @@ def update_story():
                     "edited_estimation",
                     "edited_status"
                     ]
-    for name in form_elements:
-        editing_story.append(request.form[name])
+    for element in form_elements:
+        editing_story.append(request.form[element])
     stories.append(editing_story)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
@@ -112,7 +114,7 @@ def update_story():
 def delete_story():
     """
         Removes an entry from the specified file,
-        based on the ID.
+        based on the story_ID.
     """
     stories = open_file()
     story_ID = request.form["delete_button"]
