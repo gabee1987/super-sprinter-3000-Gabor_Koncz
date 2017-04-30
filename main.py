@@ -85,13 +85,13 @@ def show_edit_story(story_ID=None):
 @app.route("/edit", methods=["POST"])
 def update_story():
     """
-        Update the entry specified by the story_ID.
+        Updates the entry specified by the story_ID.
     """
     stories = open_file()
     story_ID = request.form["update_button"]
-    for element in stories:
-        if element[0] == story_ID:
-            stories.remove(element)
+    for row in stories:
+        if row[0] == story_ID:
+            stories.remove(row)
     editing_story = [story_ID]
     form_elements = [
                     "edited_story_title",
@@ -121,12 +121,6 @@ def delete_story():
             stories.remove(story)
     write_to_file(stories)
     return redirect(url_for('show_story_list'))
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
