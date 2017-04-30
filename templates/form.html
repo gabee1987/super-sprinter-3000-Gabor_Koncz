@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <html>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/edit_style.css">
     {% if not story_ID %}
+    <div class="form-style-8">
     <head>
         <title>Sprinter 3000 - Add new Story</title>
             <h1>User story manager - Add new Story</h1>
@@ -37,7 +38,9 @@
                 <a href="/" class="button">Back</a></p>
             </form>
         </body>
+    </div>
     {% else %}
+    <div class="form-style-8">
     <head>
         <title>Sprinter 3000 - Edit Story</title>
             <div align="middle" class="story_edit_title">
@@ -79,6 +82,7 @@
                 </p>
             </form>
         </body>
+    </div>
     {% endif %}
 </html>
 
