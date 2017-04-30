@@ -10,7 +10,6 @@
         <div align="middle" class="table-title">
             <h1>User Story Manager</h1>
         </div>
-        <p></p>
         <form action="/story" method="GET">
             <input id="create_story" type="submit" value="Create a story" class="button" href="/story">
         </form>
@@ -18,7 +17,7 @@
             <thead>
                 <tr>
                     {% for item in table_header %}
-                    <th class="text-left">{{ item }}</th>
+                        <th class="text-left">{{ item }}</th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -38,8 +37,8 @@
                                     <input  id="delete_button" name="delete_button" type="image" src="/static/img/bin.png" alt="Submit" width="60" value="{{ row[0] }}">
                                 </form>
                             </td>
-                        {% endfor %}
+                {% endfor %}
                     </tr>
-            </table>
+        </table>
     </body>
 </html>
