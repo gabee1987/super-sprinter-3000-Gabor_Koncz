@@ -10,35 +10,35 @@
             <h1>User Story Manager</h1>
         </div>
         <p></p>
+        <form action="/story" method="GET">
+            <input id="create_story" type="submit" value="Create a story" class="button" href="/story">
+        </form>
         <table class="table-fill">
             <thead>
                 <tr>
-                    <form action="/story" method="GET">
-                        <input id="create_story" type="submit" value="Create a story" class="button" href="/story">
-                    </form>
                     {% for item in table_header %}
                     <th class="text-left">{{ item }}</th>
                     {% endfor %}
                 </tr>
             </thead>
             <tbody class="table-hover">
-            {% for row in stories %}
-                <tr>
-                    {% for story in row %}
-                        <td class="text-left">{{ story }}</td>
-                    {% endfor %}
-                    <td align="middle">
-                        <form action="story/{{ row[0] }}" method="POST">
-                        <input  name="edit_button" type="image" src="/static/img/pen.png" alt="Submit" width="60" value="{{ row[0] }}">
-                        </form>
-                    </td>
-                    <td align="middle">
-                        <form action="/delete_story" method="POST">
-                        <input  name="delete" type="image" src="/static/img/bin.png" alt="Submit" width="60" value="{{ row[0] }}">
-                        </form>
-                    </td>
-                    {% endfor %}
-                </tr>
+                {% for row in stories %}
+                    <tr>
+                        {% for story in row %}
+                            <td class="text-left">{{ story }}</td>
+                        {% endfor %}
+                            <td align="middle">
+                                <form action="story/{{ row[0] }}" method="POST">
+                                    <input  id="edit_button" name="edit_button" type="image" src="/static/img/pen.png" alt="Submit" width="60" value="{{ row[0] }}">
+                                </form>
+                            </td>
+                            <td align="middle">
+                                <form action="/delete_story" method="POST">
+                                    <input  id="delete_button" name="delete_button" type="image" src="/static/img/bin.png" alt="Submit" width="60" value="{{ row[0] }}">
+                                </form>
+                            </td>
+                        {% endfor %}
+                    </tr>
             </table>
     </body>
 </html>

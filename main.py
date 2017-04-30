@@ -115,7 +115,7 @@ def delete_story():
         based on the ID.
     """
     stories = open_file()
-    story_ID = request.form["delete"]
+    story_ID = request.form["delete_button"]
     for story in stories:
         if story[0] == story_ID:
             stories.remove(story)
