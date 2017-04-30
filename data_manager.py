@@ -1,6 +1,6 @@
 """
     Data manager for Super Sprinter 3000
-    loads,saves,modifies data in specified file
+    Loads and saves data in specified file.
     by Gábor Koncz
 """
 

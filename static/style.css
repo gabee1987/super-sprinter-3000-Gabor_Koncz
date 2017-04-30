@@ -149,7 +149,7 @@ td.text-right {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Roboto", helvetica, arial, sans-serif;
     margin: 4px 2px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
@@ -168,7 +168,7 @@ td.text-right {
 }
 
 #create_story {
-    position:absolute;
+    position:relative;
     transition: .5s ease;
     left: 250px;
     top: 40px;

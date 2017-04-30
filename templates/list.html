@@ -24,8 +24,8 @@
             <tbody class="table-hover">
             {% for row in stories %}
                 <tr>
-                    {% for data in row %}
-                        <td class="text-left">{{ data }}</td>
+                    {% for story in row %}
+                        <td class="text-left">{{ story }}</td>
                     {% endfor %}
                     <td align="middle">
                         <form action="story/{{ row[0] }}" method="POST">
