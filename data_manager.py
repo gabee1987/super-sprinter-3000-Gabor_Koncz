@@ -21,8 +21,8 @@ def ID_generator(stories):
 
 def open_file(filename="database.csv"):
     """
-        Opens the specified file to show its content.
-        Reads its content as rows.
+        Opens the specified file and
+        reads its content as rows, return a list.
     """
     try:
         with open(filename, 'r') as workfile:
