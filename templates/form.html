@@ -2,29 +2,30 @@
 
 <html>
     <link rel="stylesheet" href="/static/edit_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     {% if not story_ID %}
+    <h1 align="middle">User Story Manager</h1> 
     <div class="form-style-8">
     <head>
         <title>Sprinter 3000 - Add new Story</title>
-            <h1>User story manager - Add new Story</h1>
     </head>
         <body>
-            <h3>User Story Manager - Add New Story</h3>
+            <h2>Add New Story</h2>
             <form action="/story" method="POST">
                 <p>Story Title:</br>
-                <input type="text" name="story_title" required></p>
+                <input type="text" name="story_title" placeholder="Story title" required></p>
                 
                 <p>User Story:</br>
-                <textarea name="user_story" rows="5" cols="20" required></textarea></p>
+                <textarea name="user_story" rows="5" cols="20" placeholder="User story" required></textarea></p>
 
                 <p>Acceptance criteria:</br>
-                <textarea name="acceptance_criteria" rows="5" cols="20" required></textarea></p>
+                <textarea name="acceptance_criteria" rows="5" cols="20" placeholder="Acceptance criteria" required></textarea></p>
 
                 <p>Business value:</br>
-                <input type="number" name="business_value" min="100" max="1500" step="100">
+                <input type="number" name="business_value" min="100" max="1500" step="100" value="100">
 
                 <p>Estimation (h):</br>
-                <input type="number" name="estimation" min="0.5" max="40" step="0.5">
+                <input type="number" name="estimation" min="0.5" max="40" step="0.5" value="0.5">
 
                 <p>Status:</br>
                 <select name="status">
@@ -34,8 +35,8 @@
                     <option value="Review">Review</option>
                     <option value="Done">Done</option>
                 </select>
-                <p><input type="submit" name="create" value="Create" class="button">
-                <a href="/" class="button">Back</a></p>
+                <input type="submit" name="back" value="Back" class="button">
+                <input type="submit" name="create" value="Create" class="button">
             </form>
         </body>
     </div>
